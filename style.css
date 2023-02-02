@@ -2,8 +2,8 @@ html,body,div,span,object,h1,p {
 border:0;
 font:inherit;
 font-size:100%;
-margin:0;
-padding:0;
+margin:5;
+padding:5;
 vertical-align:baseline;
 }
 html, body {background: #181818; font-family: 'Lato', helvetica, arial, sans-serif; font-size: 16px; color: #222;}
