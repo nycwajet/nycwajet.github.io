@@ -5,61 +5,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Henry Marin — Front-End Developer</title>
 <meta name="description" content="Front-end developer portfolio of Henry Marin: projects, skills, and contact." />
+
+<!-- Handwritten-friendly typefaces (kept lightweight) -->
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand:wght@400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --bg: #0b0e14; --surface:#0f1320; --card:#12182a; --ink:#e6ecff; --muted:#9aa6c0; --line:#1c2540; --accent:#6ea8fe; --accent-2:#9fe7a4;
-    --ring: 2px solid #6ea8fe; --radius:14px; --shadow: 0 10px 30px rgba(6,12,30,.25);
-    --maxw: 1080px; --gap: 14px;
+    --bg:#0b0e14; --surface:#0f1320; --card:#12182a; --ink:#e6ecff; --muted:#9aa6c0; --line:#1c2540;
+    --accent:#6ea8fe; --accent-2:#9fe7a4; --ring:2px solid #6ea8fe; --radius:14px; --shadow:0 10px 30px rgba(6,12,30,.25);
+    --maxw:1080px; --gap:14px;
+    --ff-sans: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    --ff-hand: "Patrick Hand", "Caveat", "Bradley Hand", cursive;
   }
-  /* Light theme */
   :root.light{
-    --bg:#f7f9fc; --surface:#ffffff; --card:#ffffff; --ink:#0b1220; --muted:#51607a; --line:#e8ecf4; --accent:#0a66c2; --accent-2:#0bbf6a;
-    --ring: 2px solid #0a66c2; --shadow: 0 10px 20px rgba(0,0,0,.08);
+    --bg:#f7f9fc; --surface:#ffffff; --card:#ffffff; --ink:#0b1220; --muted:#51607a; --line:#e8ecf4;
+    --accent:#0a66c2; --accent-2:#0bbf6a; --ring:2px solid #0a66c2; --shadow:0 10px 20px rgba(0,0,0,.08);
   }
-  @media (prefers-color-scheme: light){ :root:not(.dark){ color-scheme:light; } }
-  @media (prefers-color-scheme: dark){ :root:not(.light){ color-scheme:dark; } }
+  @media (prefers-color-scheme: light){ :root:not(.dark){ color-scheme:light } }
+  @media (prefers-color-scheme: dark){ :root:not(.light){ color-scheme:dark } }
 
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0; background:var(--bg); color:var(--ink);
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    line-height:1.6; -webkit-font-smoothing:antialiased;
+    font-family: var(--ff-sans); line-height:1.6; -webkit-font-smoothing:antialiased;
   }
   a{color:var(--accent); text-decoration:none}
-  a:hover{ text-decoration:underline }
+  a:hover{text-decoration:underline}
   .wrap{max-width:var(--maxw); margin:0 auto; padding:24px 16px 48px}
 
   /* Top bar */
   .top{
     display:flex; gap:12px; align-items:center; justify-content:space-between;
     position:sticky; top:0; background:linear-gradient(to bottom, var(--bg) 60%, transparent);
-    padding:10px 0; z-index:5; backdrop-filter:saturate(1.2) blur(4px);
+    padding:10px 0; z-index:5; backdrop-filter:saturate(1.15) blur(4px);
   }
   .brand{display:flex; gap:12px; align-items:center}
-  .logo{
-    width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    box-shadow: var(--shadow);
-  }
+  .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow:var(--shadow)}
   h1{margin:0;font-size:20px;letter-spacing:.2px}
   .actions{display:flex; gap:8px; align-items:center}
   .btn{
     border:1px solid var(--line); background:var(--surface); color:var(--ink);
     padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:600;
   }
-  .btn:hover{ border-color: transparent; box-shadow: var(--shadow) }
+  .btn:hover{ border-color:transparent; box-shadow:var(--shadow) }
   .btn.accent{ background:var(--accent); color:#fff; border:none }
-  .btn.round{ border-radius:999px; width:40px; height:40px; display:grid; place-items:center; font-weight:700 }
+  .btn.round{ border-radius:999px; width:40px;height:40px; display:grid; place-items:center; font-weight:700 }
+
+  .toggle{display:flex; gap:6px}
+  .toggle .btn{font-size:13px; padding:8px 10px}
+  .toggle .btn[aria-pressed="true"]{ background:var(--accent); color:#fff; border-color:transparent }
 
   /* Skip link */
   .skip{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
   .skip:focus{left:16px; top:16px; width:auto; height:auto; background:var(--accent); color:#fff; padding:8px 12px; border-radius:8px; z-index:999}
 
   /* Hero */
-  .hero{
-    display:grid; gap:14px; grid-template-columns:1fr;
-    padding:16px 0 8px; border-bottom:1px solid var(--line); margin-bottom:16px;
-  }
+  .hero{display:grid; gap:14px; grid-template-columns:1fr; padding:16px 0 8px; border-bottom:1px solid var(--line); margin-bottom:16px}
   .tagline{font-size:28px; line-height:1.2; font-weight:800}
   .sub{color:var(--muted)}
   .meta{display:flex; flex-wrap:wrap; gap:12px; color:var(--muted); font-size:14px}
@@ -70,10 +72,10 @@
   .sec-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px}
   .sec-head h2{margin:0; font-size:14px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted)}
 
-  /* Skills */
+  /* Skills chips */
   .chips{display:flex; flex-wrap:wrap; gap:8px}
   .chip{border:1px solid var(--line); padding:6px 10px; border-radius:999px; font-size:14px; background:var(--surface)}
-  .chip.badge{border:none; background:linear-gradient(135deg,rgba(110,168,254,.15),rgba(159,231,164,.15));}
+  .chip.badge{border:none; background:linear-gradient(135deg,rgba(110,168,254,.15),rgba(159,231,164,.15))}
 
   /* Projects grid */
   .filters{display:flex; gap:8px; flex-wrap:wrap}
@@ -85,9 +87,9 @@
     transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
   @media (max-width:900px){ .card{ grid-column: span 12 } }
-  .card:hover{ transform:translateY(-2px); box-shadow: var(--shadow); border-color:transparent }
+  .card:hover{ transform:translateY(-2px); box-shadow:var(--shadow); border-color:transparent }
   .thumb{ aspect-ratio: 16/9; background:
-      linear-gradient(135deg, rgba(110,168,254,.15), rgba(159,231,164,.15)), 
+      linear-gradient(135deg, rgba(110,168,254,.15), rgba(159,231,164,.15)),
       repeating-linear-gradient(90deg, transparent 0 12px, rgba(255,255,255,.05) 12px 13px);
   }
   .card-body{ padding:12px 12px 14px }
@@ -95,10 +97,8 @@
   .card p{ margin:0 0 10px; color:var(--muted) }
   .stack{display:flex; flex-wrap:wrap; gap:6px; font-size:12px; color:var(--muted)}
   .row{display:flex; gap:8px; margin-top:10px}
-  .row a, .row button{
-    border:1px solid var(--line); background:var(--surface); color:var(--ink); padding:6px 10px; border-radius:8px; font-weight:600; font-size:14px;
-  }
-  .row a:hover, .row button:hover{ box-shadow: var(--shadow); border-color:transparent }
+  .row a, .row button{ border:1px solid var(--line); background:var(--surface); color:var(--ink); padding:6px 10px; border-radius:8px; font-weight:600; font-size:14px }
+  .row a:hover, .row button:hover{ box-shadow:var(--shadow); border-color:transparent }
 
   /* Experience */
   .exp{display:grid; gap:12px}
@@ -108,27 +108,63 @@
   .item ul{margin:0; padding-left:18px}
   .item li{margin:4px 0}
 
-  /* Footer */
-  footer{margin-top:28px; color:var(--muted); font-size:12px; text-align:center}
+  /* Focus + motion */
+  :focus-visible{ outline:var(--ring); outline-offset:3px; border-radius:8px }
+  @media (prefers-reduced-motion: reduce){ .card, .btn{ transition:none } }
 
-  /* Focus styles */
-  :focus-visible{ outline: var(--ring); outline-offset:3px; border-radius:8px }
-
-  /* Motion */
-  @media (prefers-reduced-motion: reduce){
-    .card, .btn{ transition:none }
-  }
-
-  /* Print to PDF */
+  /* Print */
   @media print{
-    .top, .filters, .row button, .actions-print { display:none !important }
+    .top, .filters, .row button, .actions-print, .toggle { display:none !important }
     body{ background:#fff; color:#000 }
     a{ color:#000; text-decoration:none }
     .card{ break-inside:avoid }
   }
+
+  /* ---------------- Handwritten Mode ---------------- */
+  .handwritten body, body.handwritten { font-family: var(--ff-hand); }
+  .handwritten .tagline, body.handwritten .tagline{
+    font-family: var(--ff-hand); font-size:32px; letter-spacing:.3px;
+    text-shadow: 0 .2px 0 rgba(0,0,0,.25);
+  }
+  .handwritten h1, body.handwritten h1{
+    font-family: var(--ff-hand); font-size:26px; letter-spacing:.2px;
+  }
+  .handwritten h2, body.handwritten h2{
+    font-family: var(--ff-hand); font-size:18px; letter-spacing:.08em; text-transform:none;
+    background: linear-gradient(#0000, #0000), linear-gradient(currentColor, currentColor);
+    background-size: 0 1px, 100% 1px; background-position: 0 100%, 0 130%; background-repeat:no-repeat;
+  }
+  .handwritten a, body.handwritten a{
+    text-decoration: none; border-bottom: 1.5px dashed currentColor; text-underline-offset: 4px;
+  }
+  .handwritten .chip, body.handwritten .chip{
+    transform: rotate(-.5deg);
+  }
+  .handwritten .card h3, body.handwritten .card h3{
+    font-family: var(--ff-hand); font-size:20px;
+  }
+  .handwritten .item, body.handwritten .item{ transform: rotate(-.2deg) }
+  .handwritten .item li::marker, body.handwritten .item li::marker{ content: "• " }
+  .handwritten .muted, body.handwritten .muted{ opacity:.9 }
+
+  /* Optional subtle ink wobble (SVG filter) */
+  .handwritten .wrap, body.handwritten .wrap{ filter: url(#ink); }
+  @media (prefers-reduced-motion: reduce){
+    .handwritten .wrap, body.handwritten .wrap{ filter: none; }
+  }
 </style>
 </head>
 <body>
+<!-- SVG filter for subtle “ink wobble” -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="ink">
+      <feTurbulence type="fractalNoise" baseFrequency="0.003 0.01" numOctaves="1" seed="5" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.6" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+</svg>
+
 <a class="skip" href="#content">Skip to content</a>
 
 <div class="wrap">
@@ -139,16 +175,21 @@
       <h1>Henry Marin — Front-End Dev</h1>
     </div>
     <div class="actions">
-      <button class="btn round" id="themeBtn" aria-label="Toggle theme">☀️</button>
-      <button class="btn" id="copyEmailBtn" aria-label="Copy email">Copy Email</button>
-      <button class="btn accent" onclick="window.print()">Download PDF</button>
+      <div class="toggle" role="group" aria-label="Theme">
+        <button class="btn round" id="themeBtn" aria-label="Toggle theme">☀️</button>
+      </div>
+      <div class="toggle" role="group" aria-label="Typography">
+        <button class="btn" id="printBtn">Download PDF</button>
+        <button class="btn" id="copyEmailBtn">Copy Email</button>
+        <button class="btn" id="handBtn" aria-pressed="false">Handwritten</button>
+      </div>
     </div>
   </div>
 
   <!-- Hero -->
   <header class="hero" id="content">
     <div class="tagline">I build fast, accessible web UIs with clean code and tiny bundles.</div>
-    <div class="sub">Minneapolis, MN • Open to front-end roles and UI engineering</div>
+    <div class="sub muted">Minneapolis, MN • Open to front-end roles and UI engineering</div>
     <div class="meta" aria-label="Contact">
       <span>Email: <a href="mailto:henrymarin@rocketmail.com">henrymarin@rocketmail.com</a></span>
       <span>Phone: <a href="tel:+16122583669">(612) 258-3669</a></span>
@@ -175,7 +216,7 @@
     </div>
   </section>
 
-  <!-- Projects with filter -->
+  <!-- Projects -->
   <section aria-labelledby="projects">
     <div class="sec-head">
       <h2 id="projects">Projects</h2>
@@ -188,7 +229,6 @@
     </div>
 
     <div class="grid" id="projectGrid">
-      <!-- Card 1 -->
       <article class="card" data-type="web">
         <div class="thumb" aria-hidden="true"></div>
         <div class="card-body">
@@ -202,7 +242,6 @@
         </div>
       </article>
 
-      <!-- Card 2 -->
       <article class="card" data-type="ui">
         <div class="thumb" aria-hidden="true"></div>
         <div class="card-body">
@@ -216,7 +255,6 @@
         </div>
       </article>
 
-      <!-- Card 3 -->
       <article class="card" data-type="web">
         <div class="thumb" aria-hidden="true"></div>
         <div class="card-body">
@@ -230,7 +268,6 @@
         </div>
       </article>
 
-      <!-- Card 4 -->
       <article class="card" data-type="exp">
         <div class="thumb" aria-hidden="true"></div>
         <div class="card-body">
@@ -271,16 +308,12 @@
       <article class="item">
         <h3>Supply Technician — U.S. Department of Veterans Affairs</h3>
         <div class="meta-small">Jun 2018 – Mar 2019</div>
-        <ul>
-          <li>Logistics, documentation, and inventory accountability across installations.</li>
-        </ul>
+        <ul><li>Logistics, documentation, and inventory accountability across installations.</li></ul>
       </article>
       <article class="item">
         <h3>Warehouse Technician — Adecco</h3>
         <div class="meta-small">Jan 2014 – Sep 2016</div>
-        <ul>
-          <li>Organized operations; coordinated repairs; processed jobsite deliveries.</li>
-        </ul>
+        <ul><li>Organized operations; coordinated repairs; processed jobsite deliveries.</li></ul>
       </article>
     </div>
   </section>
@@ -289,11 +322,11 @@
 </div>
 
 <script>
-  // Theme toggle with persistence & system preference
+  // Theme toggle with persistence
   (function(){
     const root = document.documentElement;
     const stored = localStorage.getItem('theme');
-    if(stored){ root.classList.toggle('light', stored === 'light'); root.classList.toggle('dark', stored === 'dark'); }
+    if(stored){ root.classList.toggle('light', stored==='light'); root.classList.toggle('dark', stored==='dark'); }
     const btn = document.getElementById('themeBtn');
     const setIcon = () => btn.textContent = root.classList.contains('light') ? '🌙' : '☀️';
     setIcon();
@@ -307,12 +340,15 @@
   })();
 
   // Copy email
-  document.getElementById('copyEmailBtn').addEventListener('click', async () => {
+  document.getElementById('copyEmailBtn').addEventListener('click', async (event) => {
     try {
       await navigator.clipboard.writeText('henrymarin@rocketmail.com');
       const b = event.currentTarget; const prev = b.textContent; b.textContent='Copied!'; setTimeout(()=>b.textContent=prev,1000);
     } catch(e){ alert('Could not copy, email: henrymarin@rocketmail.com'); }
   });
+
+  // PDF
+  document.getElementById('printBtn').addEventListener('click', ()=>window.print());
 
   // Project filters
   (function(){
@@ -326,11 +362,29 @@
       });
       filters.forEach(f=>f.setAttribute('aria-pressed', String(f.dataset.filter===filter)));
     }
-    filters.forEach(f=>f.addEventListener('click',()=>apply(f.dataset.filter)));
+    filters.forEach(f=>f.addEventListener('click', ()=>apply(f.dataset.filter)));
   })();
 
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Handwritten mode toggle (persists)
+  (function(){
+    const btn = document.getElementById('handBtn');
+    const key = 'handwritten';
+    const apply = (on) => {
+      document.body.classList.toggle('handwritten', on);
+      btn.setAttribute('aria-pressed', String(on));
+      btn.textContent = on ? 'Handwritten ✓' : 'Handwritten';
+    };
+    const saved = localStorage.getItem(key) === '1';
+    apply(saved);
+    btn.addEventListener('click', ()=>{
+      const on = !document.body.classList.contains('handwritten');
+      apply(on);
+      localStorage.setItem(key, on ? '1' : '0');
+    });
+  })();
 </script>
 </body>
 </html>
