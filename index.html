@@ -1,114 +1,279 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Henry Marin CV</title>
+  <meta charset="UTF-8" />
+  <title>Henry Marin — Resume (Notebook)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Handwritten + clean body fonts (safe fallbacks included) -->
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand:wght@400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --paper:#fbfbf7;         /* notebook paper */
+      --ink:#1a1f2b;
+      --muted:#5a6577;
+      --line:#c9d2e3;          /* blue-ish lines */
+      --margin:#ff6b6b;        /* red margin line */
+      --ring-shadow: rgba(0,0,0,.18);
+      --tag: #ffe08a;
+      --maxw: 900px;
+      --hole: #e9ebee;
+    }
+    *{box-sizing:border-box}
 
-<meta name="viewport" content="width=device-width"/>
-<meta name="description" content="Henry Marin resume."/>
-<meta charset="UTF-8"> 
+    /* Page background */
+    html,body{
+      margin:0;
+      background:#f0f1f4;
+      color:var(--ink);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height:1.6;
+    }
 
-<link type="text/css" rel="stylesheet" href="style.css">
-<link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet' type='text/css'>
+    /* Notebook sheet */
+    .sheet{
+      position:relative;
+      max-width:var(--maxw);
+      margin:40px auto;
+      padding:48px 42px 40px 72px; /* extra left for margin line */
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          var(--paper),
+          var(--paper) 22px,
+          var(--line) 23px,
+          var(--paper) 46px
+        );
+      background-color: var(--paper);
+      border-radius: 14px;
+      box-shadow:
+        0 25px 60px rgba(26,35,60,.15),
+        0 2px 0 rgba(255,255,255,.8) inset;
+      overflow:hidden;
+    }
+    /* Red margin line */
+    .sheet::before{
+      content:"";
+      position:absolute;
+      top:0; bottom:0; left:52px;
+      width:2px; background:var(--margin);
+      opacity:.8;
+    }
+    /* Spiral/ring holes */
+    .sheet::after{
+      content:"";
+      position:absolute; left:18px; top:30px; bottom:30px; width:16px;
+      background:
+        radial-gradient(circle at 8px 0px, var(--hole) 6px, transparent 7px) 0 0/16px 60px repeat-y,
+        radial-gradient(circle at 8px 0px, var(--ring-shadow) 5px, transparent 7px) 1px 10px/16px 60px repeat-y;
+      opacity:.8;
+      pointer-events:none;
+    }
 
+    /* Header strip like a sticky tab */
+    .header{
+      display:grid;
+      grid-template-columns: 90px 1fr;
+      gap:20px;
+      align-items:center;
+      position:relative;
+      margin-bottom:18px;
+    }
+    .tab{
+      position:absolute;
+      right:-18px; top:-22px;
+      background:var(--tag);
+      padding:6px 14px;
+      border-radius: 8px;
+      box-shadow: 0 4px 0 rgba(0,0,0,.08);
+      font-weight:700;
+      transform: rotate(2deg);
+    }
+    .headshot{
+      width:90px; height:90px; border-radius:10px; object-fit:cover;
+      box-shadow: 0 3px 0 rgba(0,0,0,.1);
+      border:2px solid #fff;
+      background:#fff;
+    }
+    h1{
+      margin:0;
+      font-family:"Patrick Hand", "Segoe Print", "Bradley Hand", cursive;
+      font-size:42px; line-height:1.1;
+      letter-spacing:.5px;
+    }
+    .role{
+      margin:2px 0 6px;
+      font-weight:700; color:#2b3345;
+    }
+    .contact{
+      display:flex; flex-wrap:wrap; gap:14px; font-size:14px; color:var(--muted);
+    }
+    .contact a{ color:inherit; text-decoration:none; border-bottom:1px dashed rgba(0,0,0,.25) }
+    .contact a:hover{ border-bottom-color: transparent }
+
+    /* Sections styled like handwritten headers */
+    .section{
+      margin:22px 0 6px;
+    }
+    .section h2{
+      display:inline-block;
+      margin:0 0 10px;
+      padding:2px 10px 0 8px;
+      font-family:"Patrick Hand", cursive;
+      font-size:26px; line-height:1.2;
+      background: #fff8c6;
+      border:1px solid rgba(0,0,0,.1);
+      border-radius:8px;
+      box-shadow: 0 2px 0 rgba(0,0,0,.08);
+      transform: rotate(-1deg);
+    }
+
+    .item{ margin:12px 0 10px }
+    .item h3{
+      margin:0;
+      font-weight:700;
+      font-size:18px;
+    }
+    .meta{
+      font-size:13px; color:var(--muted);
+      margin:2px 0 6px;
+      font-style:italic;
+    }
+    .bullets{
+      margin:0; padding-left:18px; /* keep aligned to lines */
+    }
+    .bullets li{
+      margin:2px 0;
+    }
+
+    /* Skills as doodle chips */
+    .skills{
+      display:flex; flex-wrap:wrap; gap:10px; margin:6px 0 2px; padding:0; list-style:none;
+    }
+    .skills li{
+      background:#fff; border:1px solid rgba(0,0,0,.1);
+      box-shadow: 0 2px 0 rgba(0,0,0,.08);
+      border-radius:999px; padding:6px 10px; font-size:14px;
+      transform: rotate(-0.5deg);
+    }
+
+    /* Footer */
+    .foot{
+      margin-top:18px; font-size:12px; color:var(--muted);
+    }
+
+    /* Links */
+    a{ color:#0b63ff; text-decoration:none }
+    a:hover{ text-decoration:underline }
+
+    /* Print: keep the notebook feel on white */
+    @media print{
+      body{ background: #fff }
+      .sheet{
+        margin:0; box-shadow:none; border-radius:0;
+      }
+      .tab{ box-shadow:none }
+      a{ color:inherit; text-decoration:none }
+    }
+
+    /* Small screens */
+    @media (max-width:640px){
+      .sheet{ padding:42px 20px 32px 64px }
+      .header{ grid-template-columns:70px 1fr }
+      .headshot{ width:70px; height:70px }
+      h1{ font-size:34px }
+      .section h2{ font-size:22px }
+    }
+  </style>
 </head>
 <body>
-<div id="cv" class="instaFade">
-	<div class="mainDetails">
-		<div id="headshot" class="quickFade">
-			<img src="hmlogo.jpg" alt="Henry Marin" />
-		</div>
-		
-		<div id="name">
-			<h1>Henry marin</h1>
-			<h2>IT Consultant</h2>
-		</div>
-		
-		<div id="contactDetails" class="quickFade">
-			<ul>
-				<li>Email: <a href="mailto:henrymarin@rocketmail.com" target="_blank">henrymarin@rocketmail.com</a></li>
-				<li>Cell:  (612)258-3669</li>
-				<li>Address:  Minneapolis, MN. 55417</li>
-			</ul>
-		</div>
-	</div>
-	
-	<div id="mainArea" class="quickFade">
-		<section>
-			<article>
-			    <div class="sectionTitle">
-				<h1>Work Experience</h1>
-			    </div>
-			
-			 <div class="sectionContent">
-				<article>
-					<h2>Full Stack Student - Prime Digital Academy</h2>
-					<p class="subDetails">March 2020 - Present</p>
-					<p>Functional knowledge and the ability to work on all aspects involved in building a web application. 
-					   Introduced to writing front-end code in HTML, CSS, Java, JavaScript. Creating and using APIs and writing 
-					   backend code. Introduced to ReactJS, SQL(Postgresql), used Heroku, and postman.</p>
-				</article>
-				<article>
-					<h2>Technical Analyst/Consultant - Experis</h2>
-					<p class="subDetails">September 2016 - November 2019</p>
-					<p>Make recommendations about appropriate hardware, software and systems. Designing, installing and trialing new systems and software, and fixing any issues that arise. 
-					Diagnose computer problems and removing viruses, using the available tools. 
-					Help gather critical data and support the project team, including troubleshooting knowledge. 
-					Network, computer, device troubleshooting.</p>
-				</article>
-				
-				<article>
-					<h2>Supply Tech - Dept of Veteran Affairs</h2>
-					<p class="subDetails">June 2018 - March 2019</p>
-					<p>Receiving, inspecting, loading, segregating, and delivering installation supplies and equipment. Preparing all unit and organizational supply documents.
-					Maintaining automated supply system for accounting of organizational and installation supplies and equipment.</p>
-				</article>
-				
-				<article>
-					<h2>Warehouse Tech - Addecco</h2>
-					<p class="subDetails">Jan 2014 - September 2016</p>
-					<p>Provide support to all departments by ensuring the warehouse is clean, organized and stocked. 
-					Inventory and maintain the use and repair of warehouse and job site equipment. Prepare, receive, order and export warehouse deliveries, 
-					to include jobsite content and consumables.</p>
-				</article>
-			    </div>
-			</article>
-		</section>
-		
-		
-		<section>
-			<div class="sectionTitle">
-				<h1>Key Skills</h1>
-			</div>
-			
-			<div class="sectionContent">
-				<ul class="keySkills">
-					<li>Network Troubleshooting</li>
-					<li>Computer Troubleshooting</li>
-					<li>Hardware Deployment</li>
-					<li>Project Coordination</li>
-					<li>Knowledge Data Entry</li>
-				</ul>
-			</div>
-			<div class="clear"></div>
-		</section>
-		
-		
-		<section>
-			<div class="sectionTitle">
-				<h1>Education</h1>
-			</div>
-			
-			<div class="sectionContent">
-				<article>
-					<h2>University of Phoenix</h2>
-					<p class="subDetails">Bachelors of Science Software Development</p>
-				</article>
-				
-			</div>
-			<div class="clear"></div>
-		</section>
-		
-	</div>
-</div>
+  <main class="sheet" role="main" aria-label="Resume notebook page">
+    <div class="tab">Resume</div>
+
+    <!-- Header -->
+    <header class="header">
+      <img class="headshot" src="hmlogo.jpg" alt="Headshot of Henry Marin">
+      <div>
+        <h1>Henry Marin</h1>
+        <div class="role">IT Consultant</div>
+        <div class="contact" aria-label="Contact">
+          <span>Email: <a href="mailto:henrymarin@rocketmail.com">henrymarin@rocketmail.com</a></span>
+          <span>Cell: <a href="tel:+16122583669">(612) 258-3669</a></span>
+          <span>Minneapolis, MN 55417</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Work Experience -->
+    <section class="section" aria-labelledby="work">
+      <h2 id="work">Work Experience</h2>
+
+      <article class="item">
+        <h3>Full Stack Student — Prime Digital Academy</h3>
+        <div class="meta">Mar 2020 – Present</div>
+        <ul class="bullets">
+          <li>Front-end: HTML, CSS, JavaScript; back-end: APIs, server logic.</li>
+          <li>Databases (PostgreSQL) and React fundamentals.</li>
+          <li>Deployment and API testing with Heroku & Postman.</li>
+        </ul>
+      </article>
+
+      <article class="item">
+        <h3>Technical Analyst / Consultant — Experis</h3>
+        <div class="meta">Sep 2016 – Nov 2019</div>
+        <ul class="bullets">
+          <li>Recommended/implemented hardware, software, and system upgrades.</li>
+          <li>Installed and piloted new tools; resolved incidents incl. malware removal.</li>
+          <li>Supported project teams with data gathering and troubleshooting.</li>
+          <li>Network, computer, and device diagnostics and repair.</li>
+        </ul>
+      </article>
+
+      <article class="item">
+        <h3>Supply Technician — Department of Veterans Affairs</h3>
+        <div class="meta">Jun 2018 – Mar 2019</div>
+        <ul class="bullets">
+          <li>Received, inspected, and distributed supplies and equipment.</li>
+          <li>Prepared supply documentation and maintained inventory systems.</li>
+        </ul>
+      </article>
+
+      <article class="item">
+        <h3>Warehouse Technician — Adecco</h3>
+        <div class="meta">Jan 2014 – Sep 2016</div>
+        <ul class="bullets">
+          <li>Maintained organized, stocked warehouse operations across departments.</li>
+          <li>Coordinated equipment maintenance and delivery processing.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Skills -->
+    <section class="section" aria-labelledby="skills">
+      <h2 id="skills">Key Skills</h2>
+      <ul class="skills">
+        <li>Network Troubleshooting</li>
+        <li>Computer Troubleshooting</li>
+        <li>Hardware Deployment</li>
+        <li>Project Coordination</li>
+        <li>Knowledge/Data Entry</li>
+      </ul>
+    </section>
+
+    <!-- Education -->
+    <section class="section" aria-labelledby="education">
+      <h2 id="education">Education</h2>
+      <article class="item">
+        <h3>University of Phoenix</h3>
+        <div class="meta">Bachelor of Science — Software Development</div>
+      </article>
+    </section>
+
+    <div class="foot">© <span id="year"></span> Henry Marin • Minneapolis, MN</div>
+  </main>
+
+  <script>
+    // Current year for footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
