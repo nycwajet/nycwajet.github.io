@@ -1,267 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Henry Marin — Resume (Notebook Aesthetic)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --desk:#e9ecef;
-      --paper:#fcfbf7;
-      --ink:#1d2330;
-      --muted:#626d82;
-      --rule:#cbd6ea;      /* blue line */
-      --margin:#ff6b6b;    /* red margin */
-      --ring:#dfe3ea;
-      --ringShadow: rgba(0,0,0,.18);
-      --accent:#0a66c2;
-      --tab:#ffe08a;       /* washi tab */
-      --maxw: 950px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;height:100%;}
-    body{
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      color:var(--ink);
-      background: radial-gradient(1400px 800px at 20% 0%, #ffffff 0%, var(--desk) 60%, #dee2e6 100%);
-      line-height:1.6;
-    }
-    .wrap{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:28px 18px;
-    }
-    .sheet{
-      position:relative;
-      width:min(var(--maxw), 100%);
-      margin:auto;
-      padding:68px 48px 40px 92px; /* extra left for margin & rings */
-      border-radius:14px;
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          var(--paper) 0px,
-          var(--paper) 23px,
-          var(--rule) 24px,
-          var(--paper) 48px
-        );
-      background-color:var(--paper);
-      box-shadow:
-        0 30px 60px rgba(28,32,48,.18),
-        0 1px 0 rgba(255,255,255,.75) inset;
-      overflow:hidden;
-    }
-    .sheet::before{
-      content:"";
-      position:absolute; top:0; bottom:0; left:72px;
-      width:2px; background:var(--margin);
-      opacity:.85;
-    }
-    .sheet::after{
-      content:"";
-      position:absolute; left:22px; top:28px; bottom:28px; width:24px;
-      background:
-        radial-gradient(circle at 12px 6px, var(--ring) 7px, transparent 8px) 0 0/24px 60px repeat-y,
-        radial-gradient(circle at 12px 8px, var(--ringShadow) 5px, transparent 8px) 0 0/24px 60px repeat-y;
-      filter: saturate(0.9);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .spiral{
-      position:absolute; left:16px; top:18px; bottom:18px; width:36px;
-      background:
-        radial-gradient(circle at 18px 12px, #b5bdc7 7px, transparent 8px) 0 0/36px 60px repeat-y,
-        radial-gradient(circle at 18px 14px, rgba(0,0,0,.2) 4px, transparent 7px) 0 0/36px 60px repeat-y;
-      mix-blend-mode:multiply;
-      opacity:.9;
-      pointer-events:none;
-    }
-    .actions{ display:flex; justify-content:center; margin:0 0 14px; }
-    .btn{
-      display:inline-block; border:0; border-radius:8px;
-      background:var(--accent); color:#fff; font-weight:700;
-      padding:8px 16px; cursor:pointer; font-size:14px;
-      box-shadow: 0 6px 12px rgba(10,102,194,.18);
-    }
-    .btn:hover{ background:#0b57a3 }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Henry Marin — Front-End Developer</title>
+<meta name="description" content="Front-end developer portfolio of Henry Marin: projects, skills, and contact." />
+<style>
+  :root{
+    --bg: #0b0e14; --surface:#0f1320; --card:#12182a; --ink:#e6ecff; --muted:#9aa6c0; --line:#1c2540; --accent:#6ea8fe; --accent-2:#9fe7a4;
+    --ring: 2px solid #6ea8fe; --radius:14px; --shadow: 0 10px 30px rgba(6,12,30,.25);
+    --maxw: 1080px; --gap: 14px;
+  }
+  /* Light theme */
+  :root.light{
+    --bg:#f7f9fc; --surface:#ffffff; --card:#ffffff; --ink:#0b1220; --muted:#51607a; --line:#e8ecf4; --accent:#0a66c2; --accent-2:#0bbf6a;
+    --ring: 2px solid #0a66c2; --shadow: 0 10px 20px rgba(0,0,0,.08);
+  }
+  @media (prefers-color-scheme: light){ :root:not(.dark){ color-scheme:light; } }
+  @media (prefers-color-scheme: dark){ :root:not(.light){ color-scheme:dark; } }
 
-    .header{ position:relative; margin-bottom:10px; }
-    .washi{
-      position:absolute; right:-14px; top:-30px; transform: rotate(2deg);
-      background:var(--tab); padding:6px 14px; border-radius:8px;
-      box-shadow: 0 6px 0 rgba(0,0,0,.06);
-      font-weight:700; font-size:13px; letter-spacing:.02em;
-    }
-    h1{
-      margin:0;
-      font-family:"Patrick Hand", "Segoe Print", "Bradley Hand", cursive;
-      font-size:48px; line-height:1.12; letter-spacing:.4px;
-    }
-    .role{ margin:2px 0 6px; font-weight:700; color:#30384b; }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent); text-decoration:none}
+  a:hover{ text-decoration:underline }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:24px 16px 48px}
 
-    .sticky{
-      margin-top:6px; display:inline-block;
-      background:#fff8a6; border:1px solid #e6d97d;
-      padding:10px 12px; border-radius:8px;
-      box-shadow: 0 4px 0 rgba(0,0,0,.06);
-      transform: rotate(-1.5deg);
-      font-size:14px; color:#403b2f;
-    }
-    .sticky a{ color:#2b6cb0; text-decoration:none; border-bottom:1px dashed rgba(43,108,176,.4)}
-    .sticky a:hover{ border-bottom-color:transparent }
+  /* Top bar */
+  .top{
+    display:flex; gap:12px; align-items:center; justify-content:space-between;
+    position:sticky; top:0; background:linear-gradient(to bottom, var(--bg) 60%, transparent);
+    padding:10px 0; z-index:5; backdrop-filter:saturate(1.2) blur(4px);
+  }
+  .brand{display:flex; gap:12px; align-items:center}
+  .logo{
+    width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    box-shadow: var(--shadow);
+  }
+  h1{margin:0;font-size:20px;letter-spacing:.2px}
+  .actions{display:flex; gap:8px; align-items:center}
+  .btn{
+    border:1px solid var(--line); background:var(--surface); color:var(--ink);
+    padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:600;
+  }
+  .btn:hover{ border-color: transparent; box-shadow: var(--shadow) }
+  .btn.accent{ background:var(--accent); color:#fff; border:none }
+  .btn.round{ border-radius:999px; width:40px; height:40px; display:grid; place-items:center; font-weight:700 }
 
-    .section{ margin:22px 0 8px }
-    .section h2{
-      display:inline-block; margin:0 0 8px; padding:2px 10px 0 8px;
-      font-family:"Patrick Hand", cursive; font-size:26px; line-height:1.2;
-      background:#fff8c6; border:1px solid rgba(0,0,0,.08);
-      border-radius:8px; box-shadow: 0 2px 0 rgba(0,0,0,.06);
-      transform: rotate(-0.8deg);
-    }
-    .item{ margin:12px 0 10px }
-    .item h3{ margin:0; font-weight:700; font-size:18px }
-    .meta{ font-size:13px; color:var(--muted); margin:2px 0 6px; font-style:italic }
-    p{ margin:0 0 10px }
-    ul{ margin:0 0 12px 22px; padding:0 }
-    li{ margin:4px 0 }
+  /* Skip link */
+  .skip{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+  .skip:focus{left:16px; top:16px; width:auto; height:auto; background:var(--accent); color:#fff; padding:8px 12px; border-radius:8px; z-index:999}
 
-    .skills{
-      display:flex; flex-wrap:wrap; gap:10px; margin:6px 0 2px; padding:0; list-style:none;
-    }
-    .skills li{
-      background:#fff; border:1px solid rgba(0,0,0,.08);
-      border-radius:999px; padding:6px 10px; font-size:14px;
-      box-shadow: 0 2px 0 rgba(0,0,0,.05);
-      transform: rotate(-0.4deg);
-    }
-    .foot{ margin-top:12px; font-size:12px; color:var(--muted) }
+  /* Hero */
+  .hero{
+    display:grid; gap:14px; grid-template-columns:1fr;
+    padding:16px 0 8px; border-bottom:1px solid var(--line); margin-bottom:16px;
+  }
+  .tagline{font-size:28px; line-height:1.2; font-weight:800}
+  .sub{color:var(--muted)}
+  .meta{display:flex; flex-wrap:wrap; gap:12px; color:var(--muted); font-size:14px}
+  .meta a{color:inherit; text-decoration:underline dotted; text-underline-offset:3px}
 
-    @media (max-width:720px){
-      .sheet{ padding:62px 20px 34px 86px }
-      h1{ font-size:40px }
-      .section h2{ font-size:22px }
-      .sticky{ transform:none }
-      .washi{ display:none }
-    }
-    @media print{
-      body{ background:#fff }
-      .wrap{ padding:0 }
-      .sheet{ margin:0; box-shadow:none; border-radius:0; background-color:#fff }
-      .sheet::after, .spiral, .washi, .actions{ display:none !important }
-      a{ color:inherit; text-decoration:none }
-      @page{ margin: 1in; }
-    }
-  </style>
+  /* Sections */
+  section{margin:24px 0}
+  .sec-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px}
+  .sec-head h2{margin:0; font-size:14px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted)}
+
+  /* Skills */
+  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{border:1px solid var(--line); padding:6px 10px; border-radius:999px; font-size:14px; background:var(--surface)}
+  .chip.badge{border:none; background:linear-gradient(135deg,rgba(110,168,254,.15),rgba(159,231,164,.15));}
+
+  /* Projects grid */
+  .filters{display:flex; gap:8px; flex-wrap:wrap}
+  .filters button{border:1px solid var(--line); background:var(--surface); color:var(--ink); padding:6px 10px; border-radius:999px; cursor:pointer; font-weight:600; font-size:14px}
+  .filters button[aria-pressed="true"]{ background:var(--accent); color:#fff; border-color:transparent }
+  .grid{display:grid; gap:var(--gap); grid-template-columns: repeat(12, 1fr)}
+  .card{
+    grid-column:span 6; background:var(--card); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; position:relative;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  @media (max-width:900px){ .card{ grid-column: span 12 } }
+  .card:hover{ transform:translateY(-2px); box-shadow: var(--shadow); border-color:transparent }
+  .thumb{ aspect-ratio: 16/9; background:
+      linear-gradient(135deg, rgba(110,168,254,.15), rgba(159,231,164,.15)), 
+      repeating-linear-gradient(90deg, transparent 0 12px, rgba(255,255,255,.05) 12px 13px);
+  }
+  .card-body{ padding:12px 12px 14px }
+  .card h3{ margin:0 0 6px; font-size:18px }
+  .card p{ margin:0 0 10px; color:var(--muted) }
+  .stack{display:flex; flex-wrap:wrap; gap:6px; font-size:12px; color:var(--muted)}
+  .row{display:flex; gap:8px; margin-top:10px}
+  .row a, .row button{
+    border:1px solid var(--line); background:var(--surface); color:var(--ink); padding:6px 10px; border-radius:8px; font-weight:600; font-size:14px;
+  }
+  .row a:hover, .row button:hover{ box-shadow: var(--shadow); border-color:transparent }
+
+  /* Experience */
+  .exp{display:grid; gap:12px}
+  .item{border:1px solid var(--line); background:var(--surface); border-radius:12px; padding:12px}
+  .item h3{margin:0; font-size:16px}
+  .meta-small{color:var(--muted); font-size:13px; margin:2px 0 6px}
+  .item ul{margin:0; padding-left:18px}
+  .item li{margin:4px 0}
+
+  /* Footer */
+  footer{margin-top:28px; color:var(--muted); font-size:12px; text-align:center}
+
+  /* Focus styles */
+  :focus-visible{ outline: var(--ring); outline-offset:3px; border-radius:8px }
+
+  /* Motion */
+  @media (prefers-reduced-motion: reduce){
+    .card, .btn{ transition:none }
+  }
+
+  /* Print to PDF */
+  @media print{
+    .top, .filters, .row button, .actions-print { display:none !important }
+    body{ background:#fff; color:#000 }
+    a{ color:#000; text-decoration:none }
+    .card{ break-inside:avoid }
+  }
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="sheet" role="main" aria-label="Resume notebook page">
-      <div class="spiral" aria-hidden="true"></div>
+<a class="skip" href="#content">Skip to content</a>
 
-      <!-- Download -->
-      <div class="actions"><button class="btn" onclick="window.print()">Download as PDF</button></div>
-
-      <!-- Header -->
-      <header class="header">
-        <div class="washi">Resume</div>
-        <h1>Henry Marin</h1>
-        <div class="role">IT Consultant</div>
-        <div class="sticky" aria-label="Contact">
-          <div>Email: <a href="mailto:henrymarin@rocketmail.com">henrymarin@rocketmail.com</a></div>
-          <div>Cell: <a href="tel:+16122583669">(612) 258-3669</a></div>
-          <div>Minneapolis, MN 55417</div>
-        </div>
-      </header>
-
-      <!-- Summary -->
-      <section class="section" aria-labelledby="summary">
-        <h2 id="summary">Professional Summary</h2>
-        <p>
-          IT Consultant and Full-Stack Developer with hands-on experience troubleshooting networks, computers, and hardware,
-          and supporting enterprise IT projects. Skilled across the web stack—from HTML/CSS/JavaScript on the front end to
-          APIs and relational databases (PostgreSQL) on the back end. Known for clear communication, reliable execution,
-          and the ability to quickly learn and apply new technologies in fast-paced environments.
-        </p>
-      </section>
-
-      <!-- Experience -->
-      <section class="section" aria-labelledby="experience">
-        <h2 id="experience">Experience</h2>
-
-        <article class="item">
-          <h3>Full-Stack Student — Prime Digital Academy</h3>
-          <div class="meta">Mar 2020 – Present</div>
-          <ul>
-            <li>Developed full-stack projects covering front end (HTML, CSS, JavaScript, React fundamentals) and back end (APIs, server logic).</li>
-            <li>Designed and integrated PostgreSQL databases; tested and debugged REST APIs using Postman.</li>
-            <li>Deployed applications on Heroku; practiced version control and collaborative workflows.</li>
-          </ul>
-        </article>
-
-        <article class="item">
-          <h3>Technical Analyst / Consultant — Experis</h3>
-          <div class="meta">Sep 2016 – Nov 2019</div>
-          <ul>
-            <li>Recommended and implemented hardware, software, and system upgrades aligned to client requirements.</li>
-            <li>Installed and piloted new tools; troubleshot issues and performed malware/virus remediation.</li>
-            <li>Gathered operational data, created documentation, and supported project teams with technical insights.</li>
-            <li>Executed diagnostics and repair of networks, computers, and devices to minimize downtime.</li>
-          </ul>
-        </article>
-
-        <article class="item">
-          <h3>Supply Technician — U.S. Department of Veterans Affairs</h3>
-          <div class="meta">Jun 2018 – Mar 2019</div>
-          <ul>
-            <li>Received, inspected, and distributed supplies and equipment across multiple departments.</li>
-            <li>Prepared organizational supply documentation and ensured accurate inventory management.</li>
-            <li>Maintained accountability of supplies and equipment in automated inventory systems.</li>
-          </ul>
-        </article>
-
-        <article class="item">
-          <h3>Warehouse Technician — Adecco</h3>
-          <div class="meta">Jan 2014 – Sep 2016</div>
-          <ul>
-            <li>Maintained organized warehouse operations and ensured departments had required equipment and consumables.</li>
-            <li>Coordinated equipment maintenance and managed repair schedules.</li>
-            <li>Processed and tracked deliveries to support project and jobsite needs.</li>
-          </ul>
-        </article>
-      </section>
-
-      <!-- Skills -->
-      <section class="section" aria-labelledby="skills">
-        <h2 id="skills">Core Skills</h2>
-        <ul class="skills">
-          <li>Network Troubleshooting</li>
-          <li>Computer Troubleshooting</li>
-          <li>Hardware Deployment & Maintenance</li>
-          <li>Project Coordination</li>
-          <li>Knowledge Base / Data Entry</li>
-          <li>HTML</li><li>CSS</li><li>JavaScript</li><li>React (fundamentals)</li>
-          <li>REST APIs</li><li>PostgreSQL</li><li>Heroku</li><li>Postman</li><li>Windows/Mac Support</li>
-        </ul>
-      </section>
-
-      <!-- Education -->
-      <section class="section" aria-labelledby="education">
-        <h2 id="education">Education</h2>
-        <article class="item">
-          <h3>University of Phoenix</h3>
-          <div class="meta">Bachelor of Science — Software Development</div>
-        </article>
-      </section>
-
-      <div class="foot">© <span id="year"></span> Henry Marin • Minneapolis, MN</div>
+<div class="wrap">
+  <!-- Top Bar -->
+  <div class="top" role="navigation" aria-label="Top">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <h1>Henry Marin — Front-End Dev</h1>
+    </div>
+    <div class="actions">
+      <button class="btn round" id="themeBtn" aria-label="Toggle theme">☀️</button>
+      <button class="btn" id="copyEmailBtn" aria-label="Copy email">Copy Email</button>
+      <button class="btn accent" onclick="window.print()">Download PDF</button>
     </div>
   </div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <!-- Hero -->
+  <header class="hero" id="content">
+    <div class="tagline">I build fast, accessible web UIs with clean code and tiny bundles.</div>
+    <div class="sub">Minneapolis, MN • Open to front-end roles and UI engineering</div>
+    <div class="meta" aria-label="Contact">
+      <span>Email: <a href="mailto:henrymarin@rocketmail.com">henrymarin@rocketmail.com</a></span>
+      <span>Phone: <a href="tel:+16122583669">(612) 258-3669</a></span>
+      <span>GitHub: <a href="#" id="gh">github.com/henry-marin</a></span>
+      <span>LinkedIn: <a href="#" id="li">linkedin.com/in/henry-marin</a></span>
+    </div>
+  </header>
+
+  <!-- Skills -->
+  <section aria-labelledby="skills">
+    <div class="sec-head">
+      <h2 id="skills">Core Skills</h2>
+      <div class="chips" aria-hidden="true">
+        <span class="chip badge">Performance</span>
+        <span class="chip badge">A11y</span>
+        <span class="chip badge">UI Systems</span>
+      </div>
+    </div>
+    <div class="chips">
+      <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Flex/Grid</span>
+      <span class="chip">JavaScript (ES2023)</span><span class="chip">React (fund.)</span><span class="chip">Accessibility</span>
+      <span class="chip">Design Systems</span><span class="chip">REST</span><span class="chip">PostgreSQL</span>
+      <span class="chip">Heroku</span><span class="chip">Postman</span><span class="chip">Windows/Mac Support</span>
+    </div>
+  </section>
+
+  <!-- Projects with filter -->
+  <section aria-labelledby="projects">
+    <div class="sec-head">
+      <h2 id="projects">Projects</h2>
+      <div class="filters" role="tablist" aria-label="Project filters">
+        <button class="filter" role="tab" aria-pressed="true" data-filter="all">All</button>
+        <button class="filter" role="tab" aria-pressed="false" data-filter="web">Web Apps</button>
+        <button class="filter" role="tab" aria-pressed="false" data-filter="ui">UI</button>
+        <button class="filter" role="tab" aria-pressed="false" data-filter="exp">Experiments</button>
+      </div>
+    </div>
+
+    <div class="grid" id="projectGrid">
+      <!-- Card 1 -->
+      <article class="card" data-type="web">
+        <div class="thumb" aria-hidden="true"></div>
+        <div class="card-body">
+          <h3>Galaxy Fighter (Lo-fi Canvas)</h3>
+          <p>Pure HTML5 Canvas shooter with bosses, power-ups, starfield, and local high score. No libs.</p>
+          <div class="stack"><span>HTML5 Canvas</span><span>JS</span><span>Accessibility</span></div>
+          <div class="row">
+            <a href="#" aria-label="Open live demo">Live Demo</a>
+            <a href="#" aria-label="Open source code">Source</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card" data-type="ui">
+        <div class="thumb" aria-hidden="true"></div>
+        <div class="card-body">
+          <h3>Accessible Form Kit</h3>
+          <p>Reusable form components with keyboard nav, focus rings, aria-live validation, and reduced-motion.</p>
+          <div class="stack"><span>HTML</span><span>CSS</span><span>JS (no framework)</span></div>
+          <div class="row">
+            <a href="#" aria-label="Open component docs">Docs</a>
+            <a href="#" aria-label="Open source code">Source</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card" data-type="web">
+        <div class="thumb" aria-hidden="true"></div>
+        <div class="card-body">
+          <h3>Prime Projects</h3>
+          <p>Full-stack training apps: REST APIs, PostgreSQL, Heroku deploys, basic CI and collaboration.</p>
+          <div class="stack"><span>JS</span><span>PostgreSQL</span><span>REST</span></div>
+          <div class="row">
+            <a href="#" aria-label="Open case study">Case Study</a>
+            <a href="#" aria-label="Open source code">Source</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card" data-type="exp">
+        <div class="thumb" aria-hidden="true"></div>
+        <div class="card-body">
+          <h3>Micro-Interactions Lab</h3>
+          <p>Tiny, performant UI effects: inertial hover, focus-visible demos, CSS-only toggles.</p>
+          <div class="stack"><span>CSS</span><span>JS</span></div>
+          <div class="row">
+            <a href="#" aria-label="Open live demos">Live Demos</a>
+            <a href="#" aria-label="Open source code">Source</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section aria-labelledby="xp">
+    <div class="sec-head"><h2 id="xp">Experience</h2></div>
+    <div class="exp">
+      <article class="item">
+        <h3>Full-Stack Student — Prime Digital Academy</h3>
+        <div class="meta-small">Mar 2020 – Present</div>
+        <ul>
+          <li>Front-end (HTML, CSS, JS, React fundamentals) + back-end (APIs, server logic).</li>
+          <li>PostgreSQL data models; REST API testing with Postman; deploys on Heroku.</li>
+          <li>Version control and team workflows; focus on accessibility & performance.</li>
+        </ul>
+      </article>
+      <article class="item">
+        <h3>Technical Analyst / Consultant — Experis</h3>
+        <div class="meta-small">Sep 2016 – Nov 2019</div>
+        <ul>
+          <li>Recommended & implemented hardware/software; piloted and troubleshot new tools.</li>
+          <li>Malware remediation and incident response; restored service quickly.</li>
+          <li>Documentation, knowledge capture, and stakeholder communication.</li>
+        </ul>
+      </article>
+      <article class="item">
+        <h3>Supply Technician — U.S. Department of Veterans Affairs</h3>
+        <div class="meta-small">Jun 2018 – Mar 2019</div>
+        <ul>
+          <li>Logistics, documentation, and inventory accountability across installations.</li>
+        </ul>
+      </article>
+      <article class="item">
+        <h3>Warehouse Technician — Adecco</h3>
+        <div class="meta-small">Jan 2014 – Sep 2016</div>
+        <ul>
+          <li>Organized operations; coordinated repairs; processed jobsite deliveries.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <footer>© <span id="year"></span> Henry Marin • Built with semantic HTML, modern CSS, and a dash of JS</footer>
+</div>
+
+<script>
+  // Theme toggle with persistence & system preference
+  (function(){
+    const root = document.documentElement;
+    const stored = localStorage.getItem('theme');
+    if(stored){ root.classList.toggle('light', stored === 'light'); root.classList.toggle('dark', stored === 'dark'); }
+    const btn = document.getElementById('themeBtn');
+    const setIcon = () => btn.textContent = root.classList.contains('light') ? '🌙' : '☀️';
+    setIcon();
+    btn.addEventListener('click', () => {
+      const toLight = !root.classList.contains('light');
+      root.classList.toggle('light', toLight);
+      root.classList.toggle('dark', !toLight);
+      localStorage.setItem('theme', toLight ? 'light' : 'dark');
+      setIcon();
+    });
+  })();
+
+  // Copy email
+  document.getElementById('copyEmailBtn').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('henrymarin@rocketmail.com');
+      const b = event.currentTarget; const prev = b.textContent; b.textContent='Copied!'; setTimeout(()=>b.textContent=prev,1000);
+    } catch(e){ alert('Could not copy, email: henrymarin@rocketmail.com'); }
+  });
+
+  // Project filters
+  (function(){
+    const grid = document.getElementById('projectGrid');
+    const cards = [...grid.querySelectorAll('.card')];
+    const filters = document.querySelectorAll('.filter');
+    function apply(filter){
+      cards.forEach(c=>{
+        const ok = filter==='all' || c.dataset.type===filter;
+        c.style.display = ok ? '' : 'none';
+      });
+      filters.forEach(f=>f.setAttribute('aria-pressed', String(f.dataset.filter===filter)));
+    }
+    filters.forEach(f=>f.addEventListener('click',()=>apply(f.dataset.filter)));
+  })();
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
