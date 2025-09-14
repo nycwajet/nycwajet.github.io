@@ -1,198 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Henry Marin — IT Consultant | Resume</title>
+  <meta charset="UTF-8" />
+  <title>Henry Marin — Resume (Notebook)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Resume of Henry Marin, IT Consultant based in Minneapolis, MN." />
-
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --ink:#111; --muted:#555; --line:#ddd; --bg:#fff; --accent:#0a66c2;
-      --maxw: 760px;
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      background: #fdfdfb;
+      line-height: 1.6;
+      color: #222;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    main{max-width:var(--maxw);margin:40px auto;padding:0 16px}
-    header{margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:16px}
-    h1{margin:0;font-size:28px;line-height:1.2}
-    .title{margin-top:6px;font-weight:600;color:var(--ink)}
-    .contact{margin-top:8px;color:var(--muted);font-size:14px}
-    .contact span{margin-right:12px;display:inline-block}
-    h2{margin:22px 0 8px;font-size:18px;letter-spacing:.02em;text-transform:uppercase}
-    section{padding:8px 0;border-top:1px solid var(--line)}
-    section:first-of-type{border-top:0}
-    .item{margin:10px 0}
-    .item h3{margin:0 0 2px;font-size:16px}
-    .meta{color:var(--muted);font-size:13px;margin-bottom:6px}
-    ul{margin:0;padding-left:18px}
-    li{margin:4px 0}
-    .skills{margin:6px 0 2px}
-    .edu h3{font-size:16px;margin:0}
-    .edu .meta{margin-top:2px}
-    footer{margin:18px 0 28px;color:var(--muted);font-size:12px;text-align:center}
+    .page {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 60px 40px 40px 80px;
+      background-color: #fdfdfb;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      position: relative;
 
-    /* Download button */
-    .download-btn{
-      display:inline-block;
-      margin:0 auto 20px;
-      padding:8px 16px;
-      background:var(--accent);
-      color:#fff;
-      border:none;
-      border-radius:4px;
-      font-size:14px;
-      cursor:pointer;
-      font-weight:600;
+      /* real notebook lines */
+      background-image: 
+        repeating-linear-gradient(to bottom, transparent 23px, #c9d2e3 24px);
     }
-    .download-btn:hover{background:#084d94}
-
-    /* Print-specific styling */
-    @media print {
-      body{background:#fff;color:#000}
-      .download-btn{display:none}
-      main{margin:0;padding:0}
-      a{color:#000;text-decoration:none}
-
-      /* Running header & footer */
-      @page {
-        margin: 1in;
-        @top-center {
-          content: "Henry Marin — IT Consultant";
-          font-size: 12px;
-          font-weight: bold;
-        }
-        @bottom-center {
-          content: "Page " counter(page) " of " counter(pages);
-          font-size: 12px;
-        }
-      }
+    /* red margin line */
+    .page::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 60px;
+      width: 2px;
+      background: #e66;
     }
+    h1 {
+      font-family: "Patrick Hand", cursive;
+      font-size: 42px;
+      margin: 0;
+    }
+    h2 {
+      font-family: "Patrick Hand", cursive;
+      font-size: 26px;
+      margin: 24px 0 8px;
+      display: inline-block;
+      background: #fff8c6;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    h3 {
+      font-size: 18px;
+      margin: 8px 0 2px;
+    }
+    .meta {
+      font-size: 13px;
+      color: #555;
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+    ul {
+      margin: 0 0 12px 20px;
+      padding: 0;
+    }
+    li { margin: 4px 0; }
+    .contact { margin: 8px 0 20px; font-size: 14px; color: #444; }
+    .contact span { display: block; }
   </style>
-
-  <!-- Schema.org structured data -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Henry Marin",
-    "jobTitle":"IT Consultant",
-    "email":"mailto:henrymarin@rocketmail.com",
-    "telephone":"+1-612-258-3669",
-    "address":{
-      "@type":"PostalAddress",
-      "addressLocality":"Minneapolis",
-      "addressRegion":"MN",
-      "postalCode":"55417",
-      "addressCountry":"US"
-    }
-  }
-  </script>
 </head>
 <body>
-<main role="main">
-
-  <!-- Download PDF button -->
-  <div style="text-align:center">
-    <button class="download-btn" onclick="window.print()">Download as PDF</button>
-  </div>
-
-  <!-- Header -->
-  <header aria-label="Header">
+  <div class="page">
     <h1>Henry Marin</h1>
-    <div class="title">IT Consultant</div>
-    <div class="contact" aria-label="Contact">
+    <div class="contact">
       <span>Email: <a href="mailto:henrymarin@rocketmail.com">henrymarin@rocketmail.com</a></span>
-      <span>Phone: <a href="tel:+16122583669">(612) 258-3669</a></span>
+      <span>Phone: (612) 258-3669</span>
       <span>Location: Minneapolis, MN 55417</span>
     </div>
-  </header>
 
-  <!-- Summary -->
-  <section>
     <h2>Professional Summary</h2>
     <p>
       IT consultant with experience troubleshooting networks, computers, and devices; deploying hardware;
       and supporting project delivery with clear documentation. Skilled across the stack from HTML/CSS/JavaScript
       to APIs and relational databases (PostgreSQL). Recognized for reliable execution, customer empathy,
-      and effective collaboration with cross-functional teams.
+      and collaboration with cross-functional teams.
     </p>
-  </section>
 
-  <!-- Skills -->
-  <section>
-    <h2>Core Skills</h2>
-    <p class="skills">
-      Network Troubleshooting • Computer Troubleshooting • Hardware Deployment • Project Coordination •
-      Data Entry / Knowledge Base • HTML • CSS • JavaScript • React (fundamentals) • APIs • SQL (PostgreSQL) •
-      Heroku • Postman • Windows/Mac Support
-    </p>
-  </section>
-
-  <!-- Experience -->
-  <section>
     <h2>Experience</h2>
+    <h3>Prime Digital Academy — Full Stack Student</h3>
+    <div class="meta">Mar 2020 – Present</div>
+    <ul>
+      <li>Built projects with HTML, CSS, JavaScript, APIs, PostgreSQL, React.</li>
+      <li>Deployed using Heroku, tested APIs with Postman.</li>
+    </ul>
 
-    <article class="item">
-      <h3>Prime Digital Academy — Full Stack Student</h3>
-      <div class="meta">Mar 2020 – Present</div>
-      <ul>
-        <li>Developed projects across front end (HTML, CSS, JavaScript) and back end (APIs, server logic).</li>
-        <li>Applied React fundamentals, PostgreSQL, and REST API testing with Postman.</li>
-        <li>Practiced deployment workflows using Heroku.</li>
-      </ul>
-    </article>
+    <h3>Experis — Technical Analyst / Consultant</h3>
+    <div class="meta">Sep 2016 – Nov 2019</div>
+    <ul>
+      <li>Recommended and implemented hardware/software solutions.</li>
+      <li>Resolved incidents including malware remediation.</li>
+    </ul>
 
-    <article class="item">
-      <h3>Experis — Technical Analyst / Consultant</h3>
-      <div class="meta">Sep 2016 – Nov 2019</div>
-      <ul>
-        <li>Recommended and implemented hardware, software, and systems for client projects.</li>
-        <li>Installed, piloted, and troubleshot new tools; performed malware remediation.</li>
-        <li>Supported project teams with data gathering and knowledge capture.</li>
-        <li>Executed network, computer, and device diagnostics to restore service quickly.</li>
-      </ul>
-    </article>
+    <h3>U.S. Department of Veterans Affairs — Supply Technician</h3>
+    <div class="meta">Jun 2018 – Mar 2019</div>
+    <ul>
+      <li>Received, inspected, distributed supplies and equipment.</li>
+      <li>Maintained automated inventory systems.</li>
+    </ul>
 
-    <article class="item">
-      <h3>U.S. Department of Veterans Affairs — Supply Technician</h3>
-      <div class="meta">Jun 2018 – Mar 2019</div>
-      <ul>
-        <li>Received, inspected, and distributed supplies and equipment.</li>
-        <li>Prepared supply documentation and maintained accountability systems.</li>
-      </ul>
-    </article>
+    <h3>Adecco — Warehouse Technician</h3>
+    <div class="meta">Jan 2014 – Sep 2016</div>
+    <ul>
+      <li>Maintained organized, stocked warehouse operations.</li>
+      <li>Coordinated repairs and managed deliveries.</li>
+    </ul>
 
-    <article class="item">
-      <h3>Adecco — Warehouse Technician</h3>
-      <div class="meta">Jan 2014 – Sep 2016</div>
-      <ul>
-        <li>Maintained organized, stocked warehouse operations across departments.</li>
-        <li>Coordinated equipment maintenance and delivery processing.</li>
-      </ul>
-    </article>
-  </section>
+    <h2>Key Skills</h2>
+    <ul>
+      <li>Network & Computer Troubleshooting</li>
+      <li>Hardware Deployment</li>
+      <li>Project Coordination</li>
+      <li>Data Entry / Knowledge Base</li>
+      <li>HTML, CSS, JavaScript, React</li>
+    </ul>
 
-  <!-- Education -->
-  <section>
     <h2>Education</h2>
-    <article class="edu">
-      <h3>University of Phoenix</h3>
-      <div class="meta">Bachelor of Science — Software Development</div>
-    </article>
-  </section>
-
-  <footer>
-    Updated <time id="last-updated"></time> · © <span id="year"></span> Henry Marin
-  </footer>
-</main>
-
-<script>
-  const now = new Date();
-  document.getElementById('year').textContent = now.getFullYear();
-  document.getElementById('last-updated').textContent = now.toLocaleDateString(undefined, { year:'numeric', month:'short' });
-</script>
+    <h3>University of Phoenix</h3>
+    <div class="meta">Bachelor of Science — Software Development</div>
+  </div>
 </body>
 </html>
